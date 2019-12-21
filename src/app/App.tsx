@@ -1,8 +1,12 @@
 import React from 'react'
 
+import StudentList from 'features/ui/StudentList'
+
 function App() {
   return (
-    <div>App</div>
+    <React.Fragment>
+      <StudentList />
+    </React.Fragment>
   )
 }
 
