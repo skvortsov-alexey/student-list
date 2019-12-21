@@ -12,13 +12,13 @@ function StudentListContainer() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(actions.loadAll())
+    dispatch(actions.fetchAll())
   })
 
   return (
     <StudentList 
       students={students}
-      onRemove={(id: string) => dispatch(actions.remove(id))}
+      onDelete={(id: string) => dispatch(actions.delete(id))}
     />
   )
 }

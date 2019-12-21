@@ -6,7 +6,7 @@ import { Student } from 'features/students/types'
 
 interface StudentListItemProps {
   student: Student,
-  onRemove: (id: string) => void
+  onDelete: (id: string) => void
 }
 
 function StudentListItem({ student }: StudentListItemProps) {

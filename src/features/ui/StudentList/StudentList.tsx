@@ -6,16 +6,16 @@ import StudentListItem from './StudentListItem'
 
 interface StudentListProps {
   students: Student[],
-  onRemove: (id: string) => void
+  onDelete: (id: string) => void
 }
 
-const StudentList = ({ students, onRemove }: StudentListProps) => (
+const StudentList = ({ students, onDelete }: StudentListProps) => (
   <List>    
   {
     students.map(student => 
       <StudentListItem 
         key={student.id}
-        onRemove={onRemove}
+        onDelete={onDelete}
         student={student}        
       />
     )
