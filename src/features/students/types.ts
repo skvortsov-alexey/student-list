@@ -1,8 +1,8 @@
 export enum AcademicPerformance {
-  Unsatisfactory,
-  Satisfactory,
-  Good,
-  Excellent
+  Unsatisfactory = 2,
+  Satisfactory = 3,
+  Good = 4,
+  Excellent = 5
 }
 
 export interface Student {
@@ -12,6 +12,6 @@ export interface Student {
   academicPerformance: AcademicPerformance
 }
 
-export interface StudentsListState {
+export interface StudentsState {
   [id: string]: Student
 }

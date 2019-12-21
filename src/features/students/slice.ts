@@ -1,21 +1,38 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { Student, StudentsListState } from './types'
+import { Student, StudentsState } from './types'
 
-const initialStudentsListState: StudentsListState = {}
+const initialStudentsListState: StudentsState = {}
 
 const studentsSlice = createSlice({
 	name: 'students',
 	initialState: initialStudentsListState,
 	reducers: {
-    addStudent: (state, action: PayloadAction<Student>) => {
+    add: (state, action: PayloadAction<Student>) => {
       state[action.payload.id] = action.payload
     },
-    updateStudent: (state, action: PayloadAction<Student>) => {
+
+    load: (state, action: PayloadAction<void>) => {},
+    loadSuccess: (state, action: PayloadAction<Student>) => {
       state[action.payload.id] = action.payload
     },
-    removeStudent: (state, action: PayloadAction<string>) => {
+    loadFailure: (state, action: PayloadAction<string>) => {},
+
+    loadAll: (state, action: PayloadAction<void>) => {},
+    loadAllSuccess: (state, action: PayloadAction<Student[]>) => {
+      state = action.payload.reduce((newState: StudentsState, student: Student) => {
+        newState[student.id] = student
+        return newState
+      }, {})
+    },
+    loadAllFailure: (state, action: PayloadAction<string>) => {},
+    
+    
+    remove: (state, action: PayloadAction<string>) => {
       delete state[action.payload]
+    },
+    update: (state, action: PayloadAction<Student>) => {
+      state[action.payload.id] = action.payload
     }
 	}
 })
