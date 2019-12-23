@@ -1,8 +1,8 @@
 export enum AcademicPerformance {
-  Unsatisfactory = 2,
-  Satisfactory = 3,
-  Good = 4,
-  Excellent = 5
+  Unsatisfactory,
+  Satisfactory,
+  Good,
+  Excellent,
 }
 
 export interface Student {
