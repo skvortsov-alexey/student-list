@@ -1,8 +1,8 @@
-import React, { FormEvent, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import DateFnsUtils from '@date-io/date-fns';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import MenuItem from '@material-ui/core/MenuItem'
+import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, DatePicker  } from '@material-ui/pickers'
 
 import { AcademicPerformance } from 'features/students/types'
@@ -29,11 +29,11 @@ const academicPerformances = [
 const useStyles = makeStyles(theme => ({
   root: {
     '& > *': {
-      margin: theme.spacing(1),
-    },
+      margin: theme.spacing(1)
+    }
   },
   field: {
-    width: 250,
+    width: 250
   },
 }));
 
@@ -46,8 +46,16 @@ interface StudentFormProps {
   setAcademicPerformance: (academicPerformance: string) => void
 }
 
-function StudentForm({ fullName, birthDate, academicPerformance, setFullName, setBirthDate, setAcademicPerformance }: StudentFormProps) {
-  const classes = useStyles();
+function StudentForm(props: StudentFormProps) {
+  const {
+    fullName,
+    birthDate,
+    academicPerformance,
+    setFullName,
+    setBirthDate,
+    setAcademicPerformance
+  } = props
+  const classes = useStyles()
 
   return (
     <form className={classes.root} noValidate autoComplete="off">

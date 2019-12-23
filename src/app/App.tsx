@@ -1,36 +1,35 @@
-import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import Container from '@material-ui/core/Container';
+import React from 'react'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import MenuIcon from '@material-ui/icons/Menu'
+import MoreIcon from '@material-ui/icons/MoreVert'
+import Container from '@material-ui/core/Container'
 
 import StudentList from 'features/ui/StudentList/StudentList'
 
-import { Student, AcademicPerformance } from 'features/students/types'
+import { AcademicPerformance } from 'features/students/types'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   container: {
     position: 'relative',
     zIndex: theme.zIndex.appBar + 1,
-    paddingTop: theme.spacing(7),
+    paddingTop: theme.spacing(7)
   },
   toolbar: {
     minHeight: 128,
     alignItems: 'flex-start',
     paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(2),
+    paddingBottom: theme.spacing(2)
   },
   title: {
     flexGrow: 1,
@@ -39,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
-  const classes = useStyles();
+  const classes = useStyles()
   const students = [
     {
       id: '1',
