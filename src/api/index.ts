@@ -1,1 +1,1 @@
-export { default } from './localStorageApi'
+export { default } from './LocalStorageApi'
