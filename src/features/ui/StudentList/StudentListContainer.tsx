@@ -18,7 +18,7 @@ function StudentListContainer() {
   return (
     <StudentList 
       students={students}
-      onDelete={(id: string) => dispatch(actions.delete(id))}
+      onDelete={(id) => dispatch(actions.delete(id))}
     />
   )
 }
