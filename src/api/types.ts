@@ -7,3 +7,7 @@ export interface Api {
   fetchAllStudents: () => Student[]
   updateStudent: (student: Student) => void
 }
+
+export interface StudentsStorage {
+  [id: string]: Student
+}

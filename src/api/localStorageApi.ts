@@ -1,49 +1,58 @@
-import { Api } from './types'
 import { Student } from 'features/students/types'
-
-interface StudentsStorage {
-  [id: string]: Student
-}
+import { Api, StudentsStorage } from './types'
+import { getMockStudentsStorage, studentReviver } from './utils'
 
 class LocalStorageApi implements Api {
   protected STUDENTS_STORAGE = 'students' 
 
+  constructor() {
+    if ( this.studentStorageIsUndefined() ) {
+      this.setStudentsStorage( getMockStudentsStorage() )
+    }
+  }
+
+  protected studentStorageIsUndefined(): boolean {
+    return Object.keys(localStorage).indexOf(this.STUDENTS_STORAGE) === -1
+  }
+
   protected getStudentsStorage(): StudentsStorage {
     const json = localStorage.getItem(this.STUDENTS_STORAGE)    
-    return json ? JSON.parse(json) : {}
+    return json ? JSON.parse(json, studentReviver) : {}
   }
 
   protected setStudentsStorage(storage: StudentsStorage) {
     localStorage.setItem(this.STUDENTS_STORAGE, JSON.stringify(storage))
   }
 
-  addStudent(student: Student): void {
+  public addStudent(student: Student): void {
     const storage = this.getStudentsStorage()
     storage[student.id] = student
     this.setStudentsStorage(storage)
   }
 
-  deleteStudent(student: Student): void {
+  public deleteStudent(student: Student): void {
     const storage = this.getStudentsStorage()
     delete storage[student.id]
     this.setStudentsStorage(storage)
   }
 
-  fetchStudent(id: string): Student {
+  public fetchStudent(id: string): Student {
     const storage = this.getStudentsStorage()
     return storage[id]
   }
   
-  fetchAllStudents(): Student[] {
+  public fetchAllStudents(): Student[] {
     const storage = this.getStudentsStorage()
     return Object.values(storage)
   }
 
-  updateStudent(student: Student): void {
+  public updateStudent(student: Student): void {
     const storage = this.getStudentsStorage()
     storage[student.id] = student
     this.setStudentsStorage(storage)
   }
 }
 
-export default LocalStorageApi
+const api = new LocalStorageApi()
+
+export default api
