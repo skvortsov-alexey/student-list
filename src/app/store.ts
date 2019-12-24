@@ -28,7 +28,7 @@ const store = configureStore()
 
 export type RootState = ReturnType<typeof rootReducer>
 
-export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
+export const useRootSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export type AppThunk = ThunkAction<void, RootState, Api, Action<string>>
 
