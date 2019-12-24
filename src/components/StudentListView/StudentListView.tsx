@@ -22,15 +22,15 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function StudentListView() {
-  const [isShowAddStudentPanel, setShowAddStudentPanel] = useState(false)  
+  const [isShowAddStudentPanel, setIsShowAddStudentPanel] = useState(false)  
   const classes = useStyles()
 
   function handleFabClick() {
-    setShowAddStudentPanel(true)
+    setIsShowAddStudentPanel(true)
   }
 
   function handleAddStudentPanelClose() {
-    setShowAddStudentPanel(false)
+    setIsShowAddStudentPanel(false)
   }
 
   return(
