@@ -4,8 +4,8 @@ import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
 import { makeStyles } from '@material-ui/core/styles'
 
-import AddStudentPanel from 'features/ui/AddStudentPanel'
-import StudentList from "features/ui/StudentList"
+import AddStudentPanel from 'components/AddStudentPanel'
+import StudentList from "components/StudentList"
 
 const useStyles = makeStyles(theme => ({
   container: {
