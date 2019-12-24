@@ -1,27 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '@material-ui/core/Container'
+import Fab from '@material-ui/core/Fab'
+import AddIcon from '@material-ui/icons/Add'
 import { makeStyles } from '@material-ui/core/styles'
 
+import AddStudentPanel from 'features/ui/AddStudentPanel'
 import StudentList from "features/ui/StudentList"
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
   container: {
     position: 'relative',
     zIndex: theme.zIndex.appBar + 1,
     paddingTop: theme.spacing(7)
+  },
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing(4),
+    right: theme.spacing(4)
   }
-}));
+}))
 
 function StudentListView() {
+  const [isShowAddStudentPanel, setShowAddStudentPanel] = useState(false)  
   const classes = useStyles()
 
+  function handleFabClick() {
+    setShowAddStudentPanel(true)
+  }
+
+  function handleAddStudentPanelClose() {
+    setShowAddStudentPanel(false)
+  }
+
   return(
-    <Container className={classes.container} maxWidth="md">
-      <StudentList />
-    </Container>
+    <React.Fragment>
+      <Container className={classes.container} maxWidth="md">
+        {
+          isShowAddStudentPanel && <AddStudentPanel onClose={handleAddStudentPanelClose} />
+        }        
+        <StudentList />
+      </Container>
+      <Fab
+        className={classes.fab}
+        onClick={handleFabClick}
+        color="secondary"
+      >
+        <AddIcon />
+      </Fab>
+    </React.Fragment>
   )
 }
 

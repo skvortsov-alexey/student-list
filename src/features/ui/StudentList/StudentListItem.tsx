@@ -13,8 +13,7 @@ import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 
 import { Student } from 'features/students/types'
-
-import StudentForm from './StudentForm'
+import StudentForm from 'components/StudentForm'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -54,7 +53,7 @@ const useStyles = makeStyles(theme => ({
       textDecoration: 'underline'
     },
   }
-}));
+}))
 
 interface StudentListItemProps {
   student: Student,
@@ -64,15 +63,15 @@ interface StudentListItemProps {
 
 function StudentListItem({ student, onDelete, onUpdate }: StudentListItemProps) {
   const [fullName, setFullName] = useState(student.fullName)
-  const [birthDate, setBirthDate] = useState(student.birthDate)
-  const [academicPerformance, setAcademicPerformance] = useState(student.academicPerformance)
+  const [birthDate, setBirthDate] = useState<Date | null>(student.birthDate)
+  const [academicPerformance, setAcademicPerformance] = useState(student.academicPerformance.toString())
 
   const classes = useStyles()
 
   function handleCancelButtonClick() {
     setFullName(student.fullName)
     setBirthDate(student.birthDate)
-    setAcademicPerformance(student.academicPerformance)
+    setAcademicPerformance(student.academicPerformance.toString())
   }
 
   function handleDeleteButtonClick() {
@@ -84,15 +83,17 @@ function StudentListItem({ student, onDelete, onUpdate }: StudentListItemProps) 
       ...student,
       fullName,
       birthDate: birthDate as Date,
-      academicPerformance,
+      academicPerformance: parseInt(academicPerformance),
     })
   }
+
+  const isInvalidForm = !fullName || !birthDate || !academicPerformance
 
   return (
     <ExpansionPanel>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <div className={classes.fullNameColumn}>
-          <Typography className={classes.heading}>{student.fullName}</Typography>    
+          <Typography className={classes.heading}>{student.fullName}</Typography>
           <Typography variant="body2" className={classes.secondaryHeading}>{format(student.birthDate, 'MM/dd/yyyy')}</Typography>  
         </div>
         <div>
@@ -124,6 +125,7 @@ function StudentListItem({ student, onDelete, onUpdate }: StudentListItemProps) 
           size="small"
           color="primary"
           onClick={handleUpdateButtonClick}
+          disabled={isInvalidForm}
         >
           Update
         </Button>

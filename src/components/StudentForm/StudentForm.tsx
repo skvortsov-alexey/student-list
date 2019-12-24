@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react'
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -37,17 +38,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-interface StudentFormProps {  
+interface StudentFormProps {
+  className?: string,
   fullName: string,
-  birthDate: Date,
-  academicPerformance: AcademicPerformance,
+  birthDate: Date | null,
+  academicPerformance: string,
   setFullName: (fullName: string) => void,
-  setBirthDate: (birthDate: Date) => void,
-  setAcademicPerformance: (academicPerformance: AcademicPerformance) => void
+  setBirthDate: (birthDate: Date | null) => void,
+  setAcademicPerformance: (academicPerformance: string) => void
 }
 
 function StudentForm(props: StudentFormProps) {
   const {
+    className,
     fullName,
     birthDate,
     academicPerformance,
@@ -62,23 +65,22 @@ function StudentForm(props: StudentFormProps) {
   }
 
   function handleBirthDateChange(date: Date | null) {
-    if (date) {
-      setBirthDate(date)
-    }    
+    setBirthDate(date)
   }
 
   function handleAcademicPerformanceChange(e: ChangeEvent<HTMLInputElement>) {
-    setAcademicPerformance(parseInt(e.target.value))
+    setAcademicPerformance(e.target.value)
   }
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form className={clsx(classes.root, className)} noValidate autoComplete="off">
       <TextField
         className={classes.field}
         value={fullName}
         onChange={handleFullNameChange}
         label="Full name"
         variant="outlined"
+        size="small"
       />
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <DatePicker 
@@ -91,6 +93,7 @@ function StudentForm(props: StudentFormProps) {
           value={birthDate}
           onChange={handleBirthDateChange}
           inputVariant="outlined"
+          size="small"
         />
       </MuiPickersUtilsProvider>
       <TextField
@@ -100,7 +103,11 @@ function StudentForm(props: StudentFormProps) {
         onChange={handleAcademicPerformanceChange}
         label="Academic Performance"
         variant="outlined"
+        size="small"
       >
+        <MenuItem key="-1" value={''}>
+          <em>None</em>
+        </MenuItem>
         {academicPerformances.map(option => (
           <MenuItem key={option.value} value={option.value}>
             {option.label}

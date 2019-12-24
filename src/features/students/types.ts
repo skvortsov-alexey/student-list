@@ -12,6 +12,8 @@ export interface Student {
   academicPerformance: AcademicPerformance
 }
 
+export type StudentDraft = Omit<Student, 'id'>
+
 export interface StudentsState {
   [id: string]: Student
 }

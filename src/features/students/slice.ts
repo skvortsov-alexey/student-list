@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import v4 from 'uuid/v4'
 
 import { AppThunk } from 'app/store'
-import { Student, StudentsState } from './types'
+import { Student, StudentDraft, StudentsState } from './types'
 
 const initialStudentsState: StudentsState = {}
 
@@ -9,9 +10,11 @@ const studentsSlice = createSlice({
 	name: 'students',
 	initialState: initialStudentsState,
 	reducers: {
-    add: (state, action: PayloadAction<Student>) => {
+    add: (state, action: PayloadAction<StudentDraft>) => {},
+    addSuccess: (state, action: PayloadAction<Student>) => {
       state[action.payload.id] = action.payload
     },
+    addFailure: (state, action: PayloadAction<string>) => {},
 
 
     delete: (state, action: PayloadAction<string>) => {},
@@ -40,6 +43,17 @@ const studentsSlice = createSlice({
 })
 
 const { actions } = studentsSlice
+
+export const addStudent = (studentDraft: StudentDraft): AppThunk => async (dispatch, getState, Api) => {
+  try {
+    dispatch(actions.add(studentDraft))
+    const student = { id: v4(), ...studentDraft }
+    Api.addStudent(student)
+    dispatch(actions.addSuccess(student))
+  } catch (err) {
+    dispatch(actions.addFailure(err.toString()))
+  }
+}
 
 export const deleteStudent = (id: string): AppThunk => async (dispatch, getState, Api) => {
   try {

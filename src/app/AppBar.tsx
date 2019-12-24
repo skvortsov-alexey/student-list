@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     lineHeight: 2
   },
-}));
+}))
 
 function AppBar() {
   const classes = useStyles()
