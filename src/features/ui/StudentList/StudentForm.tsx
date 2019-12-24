@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -9,19 +9,19 @@ import { AcademicPerformance } from 'features/students/types'
 
 const academicPerformances = [
   {
-    value: AcademicPerformance[AcademicPerformance.Unsatisfactory],
+    value: AcademicPerformance.Unsatisfactory,
     label: 'Unsatisfactory',
   },
   {
-    value: AcademicPerformance[AcademicPerformance.Satisfactory],
+    value: AcademicPerformance.Satisfactory,
     label: 'Satisfactory',
   },
   {
-    value: AcademicPerformance[AcademicPerformance.Good],
+    value: AcademicPerformance.Good,
     label: 'Good',
   },
   {
-    value: AcademicPerformance[AcademicPerformance.Excellent],
+    value: AcademicPerformance.Excellent,
     label: 'Excellent',
   },
 ];
@@ -39,11 +39,11 @@ const useStyles = makeStyles(theme => ({
 
 interface StudentFormProps {  
   fullName: string,
-  birthDate: Date | null,
-  academicPerformance: string,
+  birthDate: Date,
+  academicPerformance: AcademicPerformance,
   setFullName: (fullName: string) => void,
-  setBirthDate: (birthDate: Date | null) => void,
-  setAcademicPerformance: (academicPerformance: string) => void
+  setBirthDate: (birthDate: Date) => void,
+  setAcademicPerformance: (academicPerformance: AcademicPerformance) => void
 }
 
 function StudentForm(props: StudentFormProps) {
@@ -57,12 +57,26 @@ function StudentForm(props: StudentFormProps) {
   } = props
   const classes = useStyles()
 
+  function handleFullNameChange(e: ChangeEvent<HTMLInputElement>) {
+    setFullName(e.target.value)
+  }
+
+  function handleBirthDateChange(date: Date | null) {
+    if (date) {
+      setBirthDate(date)
+    }    
+  }
+
+  function handleAcademicPerformanceChange(e: ChangeEvent<HTMLInputElement>) {
+    setAcademicPerformance(parseInt(e.target.value))
+  }
+
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <TextField
         className={classes.field}
         value={fullName}
-        onChange={event => setFullName(event.target.value)}
+        onChange={handleFullNameChange}
         label="Full name"
         variant="outlined"
       />
@@ -75,7 +89,7 @@ function StudentForm(props: StudentFormProps) {
           format="MM/dd/yyyy"
           label="Birth date"
           value={birthDate}
-          onChange={setBirthDate}
+          onChange={handleBirthDateChange}
           inputVariant="outlined"
         />
       </MuiPickersUtilsProvider>
@@ -83,7 +97,7 @@ function StudentForm(props: StudentFormProps) {
         select
         className={classes.field}
         value={academicPerformance}
-        onChange={event => setAcademicPerformance(event.target.value)}
+        onChange={handleAcademicPerformanceChange}
         label="Academic Performance"
         variant="outlined"
       >

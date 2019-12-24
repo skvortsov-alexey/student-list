@@ -30,9 +30,9 @@ class LocalStorageApi implements Api {
     this.setStudentsStorage(storage)
   }
 
-  public deleteStudent(student: Student): void {
+  public deleteStudent(id: string): void {
     const storage = this.getStudentsStorage()
-    delete storage[student.id]
+    delete storage[id]
     this.setStudentsStorage(storage)
   }
 

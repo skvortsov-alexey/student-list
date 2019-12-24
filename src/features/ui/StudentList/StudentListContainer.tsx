@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useRootSelector } from 'app/store'
 
-import { actions } from 'features/students/slice'
+import { deleteStudent, fetchAllStudents, updateStudent } from 'features/students/slice'
 import StudentList from './StudentList'
 
 function StudentListContainer() {
@@ -11,13 +11,14 @@ function StudentListContainer() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(actions.fetchAll())
+    dispatch(fetchAllStudents())
   }, [dispatch])
 
   return (
     <StudentList 
       students={students}
-      onDelete={(id) => dispatch(actions.delete(id))}
+      onDelete={(id) => dispatch(deleteStudent(id))}
+      onUpdate={(student) => dispatch(updateStudent(student))}
     />
   )
 }

@@ -2,7 +2,7 @@ import { Student } from 'features/students/types'
 
 export interface Api {
   addStudent: (student: Student) => void
-  deleteStudent: (student: Student) => void
+  deleteStudent: (id: string) => void
   fetchStudent: (id: string) => Student
   fetchAllStudents: () => Student[]
   updateStudent: (student: Student) => void

@@ -10,14 +10,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
 
-import { Student, AcademicPerformance } from 'features/students/types'
+import { Student } from 'features/students/types'
 
 import StudentForm from './StudentForm'
-
-interface StudentListItemProps {
-  student: Student,
-  onDelete: (id: string) => void
-}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,12 +54,33 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function StudentListItem({ student }: StudentListItemProps) {
+interface StudentListItemProps {
+  student: Student,
+  onDelete: (id: string) => void
+  onUpdate: (student: Student) => void
+}
+
+function StudentListItem({ student, onDelete, onUpdate }: StudentListItemProps) {
   const [fullName, setFullName] = useState(student.fullName)
-  const [birthDate, setBirthDate] = useState<Date | null>(student.birthDate)
-  const [academicPerformance, setAcademicPerformance] = useState(AcademicPerformance[student.academicPerformance])
+  const [birthDate, setBirthDate] = useState(student.birthDate)
+  const [academicPerformance, setAcademicPerformance] = useState(student.academicPerformance)
 
   const classes = useStyles()
+
+  function handleCancelButtonClick() {
+    setFullName(student.fullName)
+    setBirthDate(student.birthDate)
+    setAcademicPerformance(student.academicPerformance)
+  }
+
+  function handleUpdateButtonClick() {
+    onUpdate({
+      ...student,
+      fullName,
+      birthDate: birthDate as Date,
+      academicPerformance,
+    })
+  }
 
   return (
     <ExpansionPanel>
@@ -90,8 +106,17 @@ function StudentListItem({ student }: StudentListItemProps) {
       </ExpansionPanelDetails>      
       <Divider />
       <ExpansionPanelActions>
-        <Button size="small">Cancel</Button>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          onClick={handleCancelButtonClick}
+        >
+          Cancel
+        </Button>
+        <Button 
+          size="small"
+          color="primary"
+          onClick={handleUpdateButtonClick}
+        >
           Update
         </Button>
       </ExpansionPanelActions>
