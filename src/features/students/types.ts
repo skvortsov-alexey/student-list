@@ -1,5 +1,5 @@
-export enum AcademicPerformance {
-  Unsatisfactory,
+export enum Grade {
+  Unsatisfactory = 1,
   Satisfactory,
   Good,
   Excellent,
@@ -9,7 +9,7 @@ export interface Student {
   id: string
   fullName: string
   birthDate: Date
-  academicPerformance: AcademicPerformance
+  grade: Grade
 }
 
 export type StudentDraft = Omit<Student, 'id'>

@@ -1,5 +1,4 @@
 import React from 'react'
-import List from '@material-ui/core/List'
 
 import { Student } from 'features/students/types'
 import StudentListItem from './StudentListItem'
@@ -11,7 +10,7 @@ interface StudentListProps {
 }
 
 const StudentList = ({ students, onDelete, onUpdate }: StudentListProps) => (
-  <List>    
+  <React.Fragment>    
   {
     students.map(student => 
       <StudentListItem 
@@ -22,7 +21,7 @@ const StudentList = ({ students, onDelete, onUpdate }: StudentListProps) => (
       />
     )
   }
-  </List>
+  </React.Fragment>
 )
 
 export default StudentList

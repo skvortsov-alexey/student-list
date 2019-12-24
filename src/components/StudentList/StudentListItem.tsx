@@ -15,10 +15,9 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import { Student } from 'features/students/types'
 import StudentForm from 'components/StudentForm'
 
+import GradeAvatar from './GradeAvatar'
+
 const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%'
-  },
   heading: {
     fontWeight: theme.typography.fontWeightMedium,    
   },
@@ -36,22 +35,8 @@ const useStyles = makeStyles(theme => ({
   column: {
     flexBasis: '33.33%'
   },
-  fullNameColumn: {
+  studentInfo: {
     flexBasis: '100%'
-  },
-  birthDateColumn: {
-    flexBasis: '30%'
-  },
-  helper: {
-    borderLeft: `2px solid ${theme.palette.divider}`,
-    padding: theme.spacing(1, 2)
-  },
-  link: {
-    color: theme.palette.primary.main,
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline'
-    },
   }
 }))
 
@@ -64,14 +49,14 @@ interface StudentListItemProps {
 function StudentListItem({ student, onDelete, onUpdate }: StudentListItemProps) {
   const [fullName, setFullName] = useState(student.fullName)
   const [birthDate, setBirthDate] = useState<Date | null>(student.birthDate)
-  const [academicPerformance, setAcademicPerformance] = useState(student.academicPerformance.toString())
+  const [grade, setGrade] = useState(student.grade.toString())
 
   const classes = useStyles()
 
   function handleCancelButtonClick() {
     setFullName(student.fullName)
     setBirthDate(student.birthDate)
-    setAcademicPerformance(student.academicPerformance.toString())
+    setGrade(student.grade.toString())
   }
 
   function handleDeleteButtonClick() {
@@ -83,16 +68,17 @@ function StudentListItem({ student, onDelete, onUpdate }: StudentListItemProps) 
       ...student,
       fullName,
       birthDate: birthDate as Date,
-      academicPerformance: parseInt(academicPerformance),
+      grade: parseInt(grade),
     })
   }
 
-  const isInvalidForm = !fullName || !birthDate || !academicPerformance
+  const isInvalidForm = !fullName || !birthDate || !grade
 
   return (
     <ExpansionPanel>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-        <div className={classes.fullNameColumn}>
+        <GradeAvatar grade={student.grade} />
+        <div className={classes.studentInfo}>
           <Typography className={classes.heading}>{student.fullName}</Typography>
           <Typography variant="body2" className={classes.secondaryHeading}>{format(student.birthDate, 'MM/dd/yyyy')}</Typography>  
         </div>
@@ -107,10 +93,10 @@ function StudentListItem({ student, onDelete, onUpdate }: StudentListItemProps) 
         <StudentForm
           fullName={fullName}
           birthDate={birthDate}
-          academicPerformance={academicPerformance}
+          grade={grade}
           setFullName={setFullName}
           setBirthDate={setBirthDate}
-          setAcademicPerformance={setAcademicPerformance}
+          setGrade={setGrade}
         />
       </ExpansionPanelDetails>      
       <Divider />

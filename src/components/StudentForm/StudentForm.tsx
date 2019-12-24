@@ -6,23 +6,23 @@ import MenuItem from '@material-ui/core/MenuItem'
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, DatePicker  } from '@material-ui/pickers'
 
-import { AcademicPerformance } from 'features/students/types'
+import { Grade } from 'features/students/types'
 
-const academicPerformances = [
+const grades = [
   {
-    value: AcademicPerformance.Unsatisfactory,
+    value: Grade.Unsatisfactory,
     label: 'Unsatisfactory',
   },
   {
-    value: AcademicPerformance.Satisfactory,
+    value: Grade.Satisfactory,
     label: 'Satisfactory',
   },
   {
-    value: AcademicPerformance.Good,
+    value: Grade.Good,
     label: 'Good',
   },
   {
-    value: AcademicPerformance.Excellent,
+    value: Grade.Excellent,
     label: 'Excellent',
   },
 ];
@@ -42,10 +42,10 @@ interface StudentFormProps {
   className?: string,
   fullName: string,
   birthDate: Date | null,
-  academicPerformance: string,
+  grade: string,
   setFullName: (fullName: string) => void,
   setBirthDate: (birthDate: Date | null) => void,
-  setAcademicPerformance: (academicPerformance: string) => void
+  setGrade: (grade: string) => void
 }
 
 function StudentForm(props: StudentFormProps) {
@@ -53,10 +53,10 @@ function StudentForm(props: StudentFormProps) {
     className,
     fullName,
     birthDate,
-    academicPerformance,
+    grade,
     setFullName,
     setBirthDate,
-    setAcademicPerformance
+    setGrade
   } = props
   const classes = useStyles()
 
@@ -68,8 +68,8 @@ function StudentForm(props: StudentFormProps) {
     setBirthDate(date)
   }
 
-  function handleAcademicPerformanceChange(e: ChangeEvent<HTMLInputElement>) {
-    setAcademicPerformance(e.target.value)
+  function handleGradeChange(e: ChangeEvent<HTMLInputElement>) {
+    setGrade(e.target.value)
   }
 
   return (
@@ -99,16 +99,16 @@ function StudentForm(props: StudentFormProps) {
       <TextField
         select
         className={classes.field}
-        value={academicPerformance}
-        onChange={handleAcademicPerformanceChange}
-        label="Academic Performance"
+        value={grade}
+        onChange={handleGradeChange}
+        label="Grade"
         variant="outlined"
         size="small"
       >
         <MenuItem key="-1" value={''}>
           <em>None</em>
         </MenuItem>
-        {academicPerformances.map(option => (
+        {grades.map(option => (
           <MenuItem key={option.value} value={option.value}>
             {option.label}
           </MenuItem>

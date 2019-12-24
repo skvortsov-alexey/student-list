@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
   fab: {
     position: 'fixed',
     bottom: theme.spacing(4),
-    right: theme.spacing(4)
+    right: theme.spacing(4),
+    zIndex: theme.zIndex.appBar + 2,
   }
 }))
 

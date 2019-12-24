@@ -23,15 +23,15 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-interface StudentListItemProps {
+interface AddStudentPanelProps {
   onAdd: (StudentDraft: StudentDraft) => void
   onClose: () => void
 }
 
-function AddStudentPanel({ onAdd, onClose }: StudentListItemProps) {
+function AddStudentPanel({ onAdd, onClose }: AddStudentPanelProps) {
   const [fullName, setFullName] = useState('')
   const [birthDate, setBirthDate] = useState<Date | null>(null)
-  const [academicPerformance, setAcademicPerformance] = useState('')
+  const [grade, setGrade] = useState('')
 
   const classes = useStyles()
 
@@ -41,13 +41,13 @@ function AddStudentPanel({ onAdd, onClose }: StudentListItemProps) {
     const studentDraft = {
       fullName,
       birthDate: birthDate as Date,
-      academicPerformance: parseInt(academicPerformance)
+      grade: parseInt(grade)
     }
     onAdd(studentDraft)
     onClose()
   }
 
-  const isInvalidForm = !fullName || !birthDate || !academicPerformance
+  const isInvalidForm = !fullName || !birthDate || !grade
 
   return(
     <Paper elevation={1}>
@@ -57,10 +57,10 @@ function AddStudentPanel({ onAdd, onClose }: StudentListItemProps) {
           className={classes.form}
           fullName={fullName}
           birthDate={birthDate}
-          academicPerformance={academicPerformance}
+          grade={grade}
           setFullName={setFullName}
           setBirthDate={setBirthDate}
-          setAcademicPerformance={setAcademicPerformance}      
+          setGrade={setGrade}      
         />
       </div>
       <Divider />

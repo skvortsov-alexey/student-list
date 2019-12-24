@@ -1,6 +1,6 @@
 import v4 from 'uuid/v4'
 
-import { Student, AcademicPerformance } from 'features/students/types'
+import { Student, Grade } from 'features/students/types'
 import { StudentsStorage } from './types'
 
 const mockStudents: Student[] = [
@@ -8,25 +8,37 @@ const mockStudents: Student[] = [
     id: v4(),
     fullName: 'James Smith',
     birthDate: new Date(2002, 1, 2),
-    academicPerformance: AcademicPerformance.Satisfactory
+    grade: Grade.Satisfactory
   },
   {
     id: v4(),
     fullName: 'Maria Garcia',
     birthDate: new Date(2001, 4, 3),
-    academicPerformance: AcademicPerformance.Good
+    grade: Grade.Good
   },
   {
     id: v4(),
     fullName: 'Osmond Hawarde',
     birthDate: new Date(2002, 6, 2),
-    academicPerformance: AcademicPerformance.Excellent
+    grade: Grade.Excellent
   },
   {
     id: v4(),
     fullName: 'Robert Johnson',
     birthDate: new Date(2000, 9, 11),
-    academicPerformance: AcademicPerformance.Unsatisfactory
+    grade: Grade.Unsatisfactory
+  },
+  {
+    id: v4(),
+    fullName: 'Bob Taylor',
+    birthDate: new Date(2003, 3, 4),
+    grade: Grade.Good
+  },
+  {
+    id: v4(),
+    fullName: 'Linda Turner',
+    birthDate: new Date(2002, 5, 2),
+    grade: Grade.Excellent
   }
 ]
 
