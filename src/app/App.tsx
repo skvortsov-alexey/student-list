@@ -9,9 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import Container from '@material-ui/core/Container'
 
-import StudentList from 'features/ui/StudentList/StudentList'
-
-import { AcademicPerformance } from 'features/students/types'
+import StudentList from 'features/ui/StudentList'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,32 +37,6 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
   const classes = useStyles()
-  const students = [
-    {
-      id: '1',
-      fullName: 'James Smith',
-      birthDate: new Date(2002, 1, 2),
-      academicPerformance: AcademicPerformance.Satisfactory
-    },
-    {
-      id: '2',
-      fullName: 'Maria Garcia',
-      birthDate: new Date(2001, 4, 3),
-      academicPerformance: AcademicPerformance.Good
-    },
-    {
-      id: '3',
-      fullName: 'Osmond Hawarde',
-      birthDate: new Date(2002, 6, 2),
-      academicPerformance: AcademicPerformance.Excellent
-    },
-    {
-      id: '4',
-      fullName: 'Robert Johnson',
-      birthDate: new Date(2000, 9, 11),
-      academicPerformance: AcademicPerformance.Unsatisfactory
-    }
-  ]
 
   return (
     <div className={classes.root}>
@@ -83,7 +55,7 @@ function App() {
         </Toolbar>
       </AppBar>
       <Container className={classes.container} maxWidth="md">
-        <StudentList students={students} onDelete={()=> { console.log('111') }} />
+        <StudentList />
       </Container>
     </div>
   )
