@@ -8,12 +8,11 @@ import StudentList from './StudentList'
 function StudentListContainer() {
   const studentsState = useTypedSelector((state) => state.students)
   const students = Object.values(studentsState)
-
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(actions.fetchAll())
-  })
+  }, [dispatch])
 
   return (
     <StudentList 
