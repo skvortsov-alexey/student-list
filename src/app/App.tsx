@@ -1,7 +1,7 @@
 import React from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
-import StudentListView from 'features/ui/StudentListView'
+import StudentListView from 'components/StudentListView'
 import AppBar from './AppBar'
 
 const App = () => (
