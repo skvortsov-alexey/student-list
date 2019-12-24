@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
+import IconButton from '@material-ui/core/IconButton'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 import { Student } from 'features/students/types'
 
@@ -36,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     flexBasis: '33.33%'
   },
   fullNameColumn: {
-    flexBasis: '70%'
+    flexBasis: '100%'
   },
   birthDateColumn: {
     flexBasis: '30%'
@@ -73,6 +75,10 @@ function StudentListItem({ student, onDelete, onUpdate }: StudentListItemProps) 
     setAcademicPerformance(student.academicPerformance)
   }
 
+  function handleDeleteButtonClick() {
+    onDelete(student.id)
+  }
+
   function handleUpdateButtonClick() {
     onUpdate({
       ...student,
@@ -89,8 +95,10 @@ function StudentListItem({ student, onDelete, onUpdate }: StudentListItemProps) 
           <Typography className={classes.heading}>{student.fullName}</Typography>    
           <Typography variant="body2" className={classes.secondaryHeading}>{format(student.birthDate, 'MM/dd/yyyy')}</Typography>  
         </div>
-        <div className={classes.birthDateColumn}>
-          
+        <div>
+          <IconButton onClick={handleDeleteButtonClick}>
+            <DeleteIcon fontSize="small" />
+          </IconButton>
         </div>
       </ExpansionPanelSummary>
       
