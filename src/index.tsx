@@ -4,11 +4,8 @@ import { Provider } from 'react-redux'
 import 'typeface-roboto'
 
 import './index.css'
-import App from './app'
-import { configureStore } from './app'
+import App, { store } from './app'
 import * as serviceWorker from './serviceWorker'
-
-const store = configureStore()
 
 ReactDOM.render(
   <Provider store={store}>

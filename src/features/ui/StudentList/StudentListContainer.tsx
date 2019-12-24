@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useTypedSelector } from 'app/reducer'
+import { useTypedSelector } from 'app/store'
 
 import { actions } from 'features/students/slice'
 import StudentList from './StudentList'

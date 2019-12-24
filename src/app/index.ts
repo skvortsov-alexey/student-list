@@ -1,2 +1,2 @@
 export { default } from './App'
-export { default as configureStore } from './configureStore'
+export { default as store } from './store'
