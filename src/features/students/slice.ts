@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { AppThunk } from 'app/store'
 import { Student, StudentsState } from './types'
 
 const initialStudentsState: StudentsState = {}
@@ -22,9 +23,8 @@ const studentsSlice = createSlice({
     },
     fetchFailure: (state, action: PayloadAction<string>) => {},
 
-    fetchAll: (state, action: PayloadAction<void>) => {},
     fetchAllSuccess: (state, action: PayloadAction<Student[]>) => {
-      state = action.payload.reduce((newState: StudentsState, student: Student) => {
+      return action.payload.reduce((newState: StudentsState, student) => {
         newState[student.id] = student
         return newState
       }, {})
@@ -37,6 +37,17 @@ const studentsSlice = createSlice({
 	}
 })
 
-export const { actions } = studentsSlice
+const { fetchAllSuccess, fetchAllFailure } = studentsSlice.actions
+
+export const fetchAll = (): AppThunk => async (dispatch, getState, Api) => {
+  try {
+    const students = Api.fetchAllStudents()
+    dispatch(fetchAllSuccess(students))
+  } catch (err) {
+    dispatch(fetchAllFailure(err.toString()))
+  }
+}
+
+export const actions = { ...studentsSlice.actions, fetchAll }
 
 export default studentsSlice.reducer
