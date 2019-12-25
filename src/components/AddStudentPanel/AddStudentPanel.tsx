@@ -9,6 +9,9 @@ import StudentForm from 'components/StudentForm'
 import { StudentDraft } from 'features/students/types'
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    margin: theme.spacing(2, 0)
+  },
   formContainer: {
     padding: theme.spacing(3)
   },
@@ -50,7 +53,7 @@ function AddStudentPanel({ onAdd, onClose }: AddStudentPanelProps) {
   const isInvalidForm = !fullName || !birthDate || !grade
 
   return(
-    <Paper elevation={1}>
+    <Paper className={classes.root} elevation={1}>
       <div className={classes.formContainer}>
         <Typography variant="h6">Add student</Typography>
         <StudentForm
