@@ -13,7 +13,7 @@ function AddStudentPanelContainer({ onClose }: AddStudentPanelContainerProps) {
 
   return (
     <AddStudentPanel      
-      onAdd={(studentDraft) => dispatch(addStudent(studentDraft))}
+      onAdd={studentDraft => dispatch(addStudent(studentDraft))}
       onClose={onClose}
     />
   )

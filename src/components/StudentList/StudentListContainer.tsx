@@ -6,7 +6,7 @@ import { deleteStudent, fetchAllStudents, updateStudent } from 'features/student
 import StudentList from './StudentList'
 
 function StudentListContainer() {
-  const studentsState = useRootSelector((state) => state.students)
+  const studentsState = useRootSelector(state => state.students)
   const students = Object.values(studentsState)
   const dispatch = useDispatch()
 
@@ -17,8 +17,8 @@ function StudentListContainer() {
   return (
     <StudentList 
       students={students}
-      onDelete={(id) => dispatch(deleteStudent(id))}
-      onUpdate={(student) => dispatch(updateStudent(student))}
+      onDelete={id => dispatch(deleteStudent(id))}
+      onUpdate={student => dispatch(updateStudent(student))}
     />
   )
 }
