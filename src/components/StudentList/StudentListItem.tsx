@@ -46,7 +46,11 @@ interface StudentListItemProps {
   onUpdate: (student: Student) => void
 }
 
-function StudentListItem({ student, onDelete, onUpdate }: StudentListItemProps) {
+const StudentListItem: React.FC<StudentListItemProps> = ({
+  student,
+  onDelete,
+  onUpdate
+}) => {
   const [fullName, setFullName] = useState(student.fullName)
   const [birthDate, setBirthDate] = useState<Date | null>(student.birthDate)
   const [grade, setGrade] = useState(student.grade.toString())
@@ -80,7 +84,9 @@ function StudentListItem({ student, onDelete, onUpdate }: StudentListItemProps) 
         <GradeAvatar grade={student.grade} />
         <div className={classes.studentInfo}>
           <Typography className={classes.heading}>{student.fullName}</Typography>
-          <Typography variant="body2" className={classes.secondaryHeading}>{format(student.birthDate, 'MM/dd/yyyy')}</Typography>  
+          <Typography variant="body2" className={classes.secondaryHeading}>
+            {format(student.birthDate, 'MM/dd/yyyy')}
+          </Typography>  
         </div>
         <div>
           <IconButton onClick={handleDeleteButtonClick}>

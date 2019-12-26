@@ -44,45 +44,49 @@ const studentsSlice = createSlice({
 
 const { actions } = studentsSlice
 
-export const addStudent = (studentDraft: StudentDraft): AppThunk => async (dispatch, getState, Api) => {
-  try {
-    dispatch(actions.add(studentDraft))
-    const student = { id: v4(), ...studentDraft }
-    Api.addStudent(student)
-    dispatch(actions.addSuccess(student))
-  } catch (err) {
-    dispatch(actions.addFailure(err.toString()))
+export const addStudent = (studentDraft: StudentDraft): AppThunk =>
+  async (dispatch, getState, Api) => {
+    try {
+      dispatch(actions.add(studentDraft))
+      const student = { id: v4(), ...studentDraft }
+      Api.addStudent(student)
+      dispatch(actions.addSuccess(student))
+    } catch (err) {
+      dispatch(actions.addFailure(err.toString()))
+    }
   }
-}
 
-export const deleteStudent = (id: string): AppThunk => async (dispatch, getState, Api) => {
-  try {
-    dispatch(actions.delete(id))
-    Api.deleteStudent(id)
-    dispatch(actions.deleteSuccess(id))
-  } catch (err) {
-    dispatch(actions.deleteFailure(err.toString()))
+export const deleteStudent = (id: string): AppThunk =>
+  async (dispatch, getState, Api) => {
+    try {
+      dispatch(actions.delete(id))
+      Api.deleteStudent(id)
+      dispatch(actions.deleteSuccess(id))
+    } catch (err) {
+      dispatch(actions.deleteFailure(err.toString()))
+    }
   }
-}
 
-export const fetchAllStudents = (): AppThunk => async (dispatch, getState, Api) => {
-  try {
-    dispatch(actions.fetchAll())
-    const students = Api.fetchAllStudents()
-    dispatch(actions.fetchAllSuccess(students))
-  } catch (err) {
-    dispatch(actions.fetchAllFailure(err.toString()))
+export const fetchAllStudents = (): AppThunk =>
+  async (dispatch, getState, Api) => {
+    try {
+      dispatch(actions.fetchAll())
+      const students = Api.fetchAllStudents()
+      dispatch(actions.fetchAllSuccess(students))
+    } catch (err) {
+      dispatch(actions.fetchAllFailure(err.toString()))
+    }
   }
-}
 
-export const updateStudent = (student: Student): AppThunk => async (dispatch, getState, Api) => {
-  try {
-    dispatch(actions.update(student))
-    Api.updateStudent(student)
-    dispatch(actions.updateSuccess(student))
-  } catch (err) {
-    dispatch(actions.updateFailure(err.toString()))
+export const updateStudent = (student: Student): AppThunk =>
+  async (dispatch, getState, Api) => {
+    try {
+      dispatch(actions.update(student))
+      Api.updateStudent(student)
+      dispatch(actions.updateSuccess(student))
+    } catch (err) {
+      dispatch(actions.updateFailure(err.toString()))
+    }
   }
-}
 
 export default studentsSlice.reducer

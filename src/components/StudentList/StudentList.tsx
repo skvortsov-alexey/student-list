@@ -9,7 +9,11 @@ interface StudentListProps {
   onUpdate: (student: Student) => void
 }
 
-const StudentList = ({ students, onDelete, onUpdate }: StudentListProps) => (
+const StudentList: React.FC<StudentListProps> = ({
+  students,
+  onDelete,
+  onUpdate
+}) => (
   <React.Fragment>    
   {
     students.map(student => 

@@ -48,16 +48,15 @@ interface StudentFormProps {
   setGrade: (grade: string) => void
 }
 
-function StudentForm(props: StudentFormProps) {
-  const {
-    className,
-    fullName,
-    birthDate,
-    grade,
-    setFullName,
-    setBirthDate,
-    setGrade
-  } = props
+const StudentForm: React.FC<StudentFormProps> = ({
+  className,
+  fullName,
+  birthDate,
+  grade,
+  setFullName,
+  setBirthDate,
+  setGrade
+}) => {
   const classes = useStyles()
 
   function handleFullNameChange(e: ChangeEvent<HTMLInputElement>) {

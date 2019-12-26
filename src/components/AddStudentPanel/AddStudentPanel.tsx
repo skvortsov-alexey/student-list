@@ -31,7 +31,10 @@ interface AddStudentPanelProps {
   onClose: () => void
 }
 
-function AddStudentPanel({ onAdd, onClose }: AddStudentPanelProps) {
+const AddStudentPanel: React.FC<AddStudentPanelProps> = ({
+  onAdd,
+  onClose
+}) => {
   const [fullName, setFullName] = useState('')
   const [birthDate, setBirthDate] = useState<Date | null>(null)
   const [grade, setGrade] = useState('')

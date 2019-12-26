@@ -23,25 +23,23 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function AppBar() {
+const AppBar = () => {
   const classes = useStyles()
 
   return (
-    <React.Fragment>
-      <BaseAppBar position="fixed">
-        <Toolbar className={classes.toolbar}>
-          <IconButton edge="start" className={classes.menuButton} color="inherit">
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h5" noWrap>
-            Student List
-          </Typography>
-          <IconButton aria-label="display more actions" edge="end" color="inherit">
-            <MoreIcon />
-          </IconButton>
-        </Toolbar>
-      </BaseAppBar>
-    </React.Fragment>
+    <BaseAppBar position="fixed">
+      <Toolbar className={classes.toolbar}>
+        <IconButton edge="start" className={classes.menuButton} color="inherit">
+          <MenuIcon />
+        </IconButton>
+        <Typography className={classes.title} variant="h5" noWrap>
+          Student List
+        </Typography>
+        <IconButton edge="end" color="inherit">
+          <MoreIcon />
+        </IconButton>
+      </Toolbar>
+    </BaseAppBar>
   )
 }
 

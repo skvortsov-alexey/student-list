@@ -5,7 +5,7 @@ import { useRootSelector } from 'app/store'
 import { deleteStudent, fetchAllStudents, updateStudent } from 'features/students/slice'
 import StudentList from './StudentList'
 
-function StudentListContainer() {
+const StudentListContainer = () => {
   const studentsState = useRootSelector(state => state.students)
   const students = Object.values(studentsState)
   const dispatch = useDispatch()

@@ -32,7 +32,9 @@ interface GradeAvatarProps {
   grade: Grade,
 }
 
-function GradeAvatar({ grade }: GradeAvatarProps) {
+const GradeAvatar: React.FC<GradeAvatarProps> = ({
+  grade
+}) => {
   const classes = useStyles()
 
   function getGradeAvatarSpicificClass(): string {

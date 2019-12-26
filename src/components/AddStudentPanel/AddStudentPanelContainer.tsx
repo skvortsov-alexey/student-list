@@ -8,7 +8,9 @@ interface AddStudentPanelContainerProps {
   onClose: () => void
 }
 
-function AddStudentPanelContainer({ onClose }: AddStudentPanelContainerProps) {
+const AddStudentPanelContainer: React.FC<AddStudentPanelContainerProps> = ({
+   onClose 
+}) => {
   const dispatch = useDispatch()
 
   return (

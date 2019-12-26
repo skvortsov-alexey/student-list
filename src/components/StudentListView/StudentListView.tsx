@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function StudentListView() {
+const StudentListView = () => {
   const [isShowAddStudentPanel, setIsShowAddStudentPanel] = useState(false)  
   const classes = useStyles()
 
